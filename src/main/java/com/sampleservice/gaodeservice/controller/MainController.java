@@ -1,5 +1,6 @@
 package com.sampleservice.gaodeservice.controller;
 
+import com.sampleservice.gaodeservice.utils.MBaseUtils;
 import com.septemberhx.common.base.MResponse;
 import com.septemberhx.mclient.annotation.MApiFunction;
 import com.septemberhx.mclient.annotation.MRestApiType;
@@ -20,6 +21,10 @@ public class MainController extends MObject {
     public MResponse navigationFunction(@RequestBody MResponse requestData) {
         MResponse result = new MResponse();
         result.set("msg", "/navigation");
+
+        if (requestData.get("interval") != null) {
+            MBaseUtils.generateStringInKBSize(1000, result, (int) requestData.get("interval"));
+        }
         return result;
     }
 }
